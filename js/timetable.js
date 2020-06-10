@@ -7,4 +7,8 @@ function loadClasses() {
   });
 }
 
+$('#class').on('change', function(event) {
+    console.log(event);
+});
+
 loadClasses();
