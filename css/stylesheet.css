@@ -3,3 +3,8 @@ form {
     margin-left: 100px;
     margin-right: 100px;
 }
+
+#classFormGroup,
+.table {
+    display: none;
+}
