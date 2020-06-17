@@ -8,8 +8,11 @@ const weekdays = [
   'Samstag'
 ]
 
+let date = moment();
+let classId;
+
 function loadProfessions() {
-  $.get('http://sandbox.gibm.ch/berufe.php', function (data) {
+  $.getJSON('http://sandbox.gibm.ch/berufe.php', function (data) {
     for (i = 0; i < data.length; i++) {
       $('#profession').append(`<option value=${data[i].beruf_id}>${data[i].beruf_name}</option>`);
     }
@@ -17,7 +20,7 @@ function loadProfessions() {
 }
 
 function loadClasses(professionId) {
-  $.get(`http://sandbox.gibm.ch/klassen.php?beruf_id=${professionId}`, function (data) {
+  $.getJSON(`http://sandbox.gibm.ch/klassen.php?beruf_id=${professionId}`, function (data) {
     $('#class').empty();
     for (i = 0; i < data.length; i++) {
       $('#class').append(`<option value=${data[i].klasse_id}>${data[i].klasse_name}</option>`);
@@ -25,8 +28,9 @@ function loadClasses(professionId) {
   });
 }
 
-function loadTable(classId) {
-  $.get(`http://sandbox.gibm.ch/tafel.php?klasse_id=${classId}`, function (data) {
+function loadTable() {
+  const weekString = getWeekString();
+  $.getJSON(`http://sandbox.gibm.ch/tafel.php?klasse_id=${classId}&woche=${weekString}`, function (data) {
     console.log(data);
     $('#tableBody').empty();
     for (i = 0; i < data.length; i++) {
@@ -51,8 +55,23 @@ $('#profession').change(function () {
 });
 
 $('#class').change(function () {
-  loadTable($(this).val());
+  classId = $(this).val();
+  updateWeekText();
+  loadTable();
   $('.table').show();
+  $('.nav').show();
+});
+
+$('#weekback').click(function () {
+  date.subtract(1, 'week');
+  updateWeekText();
+  loadTable(classId);
+});
+
+$('#weekforward').click(function () {
+  date.add(1, 'week');
+  updateWeekText();
+  loadTable(classId);
 });
 
 loadProfessions();
@@ -60,4 +79,12 @@ loadProfessions();
 function formatDate(dateString) {
   const date = new Date(dateString);
   return `${date.getDate()}.${(date.getMonth() + 1) > 9 ? date.getMonth() + 1 : `0${date.getMonth() + 1}`}.${date.getFullYear()}`;
+}
+
+function getWeekString() {
+  return date.format('WW-YYYY');
+}
+
+function updateWeekText() {
+  $('#weekText').text(`Woche ${date.format('WW')}`);
 }

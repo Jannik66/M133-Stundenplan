@@ -5,6 +5,7 @@ form {
 }
 
 #classFormGroup,
-.table {
+.table,
+.nav {
     display: none;
 }
