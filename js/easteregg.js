@@ -1,6 +1,12 @@
+/**
+ * EasterEgg
+ * unnecessary easter egg made just for fun
+ */
+
 let counter = 0;
 let timeoutHandle;
 
+// count each time the middle navigation button was pressed. reset after 1 second
 function buttonPressed() {
   counter++;
   clearTimeout(timeoutHandle);
@@ -18,14 +24,17 @@ function buttonPressed() {
   }
 }
 
+// show rainbow background
 function showEasterEgg() {
   $('#easterEgg').addClass('easterEgg');
 }
 
+// animate background
 function rainbow() {
   $('.easterEgg').css('background-size', '1800% 1800%');
 }
 
+// get rick rolled (Old but gold)
 function rick() {
   window.location.href = 'https://youtu.be/dQw4w9WgXcQ';
 }

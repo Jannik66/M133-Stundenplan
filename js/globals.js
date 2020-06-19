@@ -1,5 +1,4 @@
-const weekdays = ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'];
-
-function getWeekdays() {
-  return weekdays;
+// Weekdays for table
+function getWeekday(index) {
+  return ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'][index];
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="de">
 
 <head>
     <title>GIBM Stundenplan</title>
@@ -31,35 +31,37 @@
             <nav class="nav">
                 <ul class="pagination justify-content-center">
                     <li class="page-item">
-                        <a id="weekback" class="page-link" href="#">
+                        <button id="weekback" class="page-link" href="#">
                             <span>&laquo;</span>
-                        </a>
+                        </button>
                     </li>
                     <li class="page-item">
                         <a id="weekText" data-toggle="tooltip" data-placement="top" title="Zur aktuellen Woche"
                             class="page-link" href="#"></a></li>
                     <li class="page-item">
-                        <a id="weekforward" class="page-link" href="#">
+                        <button id="weekforward" class="page-link" href="#">
                             <span>&raquo;</span>
-                        </a>
+                        </button>
                     </li>
                 </ul>
             </nav>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">Datum</th>
-                        <th scope="col">Wochentag</th>
-                        <th scope="col">Von</th>
-                        <th scope="col">Bis</th>
-                        <th scope="col">Lehrer</th>
-                        <th scope="col">Fach</th>
-                        <th scope="col">Raum</th>
-                    </tr>
-                </thead>
-                <tbody id="tableBody">
-                </tbody>
-            </table>
+            <div id="tableDiv">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Datum</th>
+                            <th scope="col">Wochentag</th>
+                            <th scope="col">Von</th>
+                            <th scope="col">Bis</th>
+                            <th scope="col">Lehrer</th>
+                            <th scope="col">Fach</th>
+                            <th scope="col">Raum</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 
