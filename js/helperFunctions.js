@@ -10,5 +10,5 @@ function getWeekString() {
 
 function updateWeekText() {
   const date = moment(getFromStorage('date'));
-  $('#weekText').text(`Woche ${moment(date).format('WW')}`);
+  $('#weekText').text(`Woche ${moment(date).format('WW | YYYY')}`);
 }

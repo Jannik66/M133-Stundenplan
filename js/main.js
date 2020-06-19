@@ -7,6 +7,8 @@ init();
 // load professions
 // load preselections from local storage
 async function init() {
+  // enable all tooltips
+  $('[data-toggle="tooltip"]').tooltip();
   await loadProfessions();
   await loadFromStorage();
   initListeners();
@@ -18,6 +20,7 @@ async function loadProfessions() {
     for (i = 0; i < data.length; i++) {
       $('#profession').append(`<option value=${data[i].beruf_id}>${data[i].beruf_name}</option>`);
     }
+    $('#profession').selectpicker('refresh');
   });
 }
 
@@ -25,16 +28,21 @@ async function loadProfessions() {
 async function loadClasses(professionId) {
   await $.getJSON(`http://sandbox.gibm.ch/klassen.php?beruf_id=${professionId}`, function (data) {
     $('#class').empty();
-    $('#class').append(`<option>Bitte Klasse auswählen</option>`);
+    $('#class').append('<option disabled selected> -- Wähle eine Klasse aus -- </option>');
     for (i = 0; i < data.length; i++) {
       $('#class').append(`<option value=${data[i].klasse_id}>${data[i].klasse_name}</option>`);
     }
+    // refresh with new options
+    $('#class').selectpicker('refresh');
+    // render so that the first option is selected
+    $('#class').selectpicker('render');
   });
   $('#classFormGroup').fadeIn();
 }
 
 // Get timetable from backend and insert into table
 async function loadTimetable() {
+  updateWeekText();
   const weekString = getWeekString();
   await $.getJSON(`http://sandbox.gibm.ch/tafel.php?klasse_id=${getFromStorage('classId')}&woche=${weekString}`, function (data) {
     $('#tableBody').empty();
@@ -62,10 +70,9 @@ async function loadFromStorage() {
   const classIdFromStorage = getFromStorage('classId');
   const dateFromStorage = getFromStorage('date');
   if (professionIdFromStorage && classIdFromStorage && dateFromStorage) {
-    $('#profession').val(professionIdFromStorage);
+    $('#profession').selectpicker('val', professionIdFromStorage);
     await loadClasses(professionIdFromStorage);
-    $('#class').val(classIdFromStorage);
-    updateWeekText();
+    $('#class').selectpicker('val', classIdFromStorage);
     await loadTimetable(classId);
   }
   // if not date is aviable, set today
@@ -83,7 +90,6 @@ function initListeners() {
   $('#class').change(function () {
     classId = $(this).val();
     saveToStorage('classId', classId);
-    updateWeekText();
     loadTimetable();
   });
 
@@ -91,7 +97,6 @@ function initListeners() {
     const date = moment(getFromStorage('date'));
     date.subtract(1, 'week');
     saveToStorage('date', date.toISOString());
-    updateWeekText();
     loadTimetable(classId);
   });
 
@@ -99,7 +104,11 @@ function initListeners() {
     const date = moment(getFromStorage('date'));
     date.add(1, 'week');
     saveToStorage('date', date.toISOString());
-    updateWeekText();
+    loadTimetable(classId);
+  });
+
+  $('#weekText').click(function () {
+    saveToStorage('date', moment().toISOString());
     loadTimetable(classId);
   });
 }

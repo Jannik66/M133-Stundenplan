@@ -1,11 +1,15 @@
-form {
-    margin-top: 50px;
-    margin-left: 100px;
-    margin-right: 100px;
+.wrapper {
+  margin-top: 50px;
+  margin-left: 100px;
+  margin-right: 100px;
 }
 
 #classFormGroup,
 .table,
 .nav {
-    display: none;
+  display: none;
+}
+
+.navwrapper {
+  align-items: center;
 }
