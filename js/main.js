@@ -110,5 +110,8 @@ function initListeners() {
   $('#weekText').click(function () {
     saveToStorage('date', moment().toISOString());
     loadTimetable(classId);
+
+    // easterEgg hihi
+    buttonPressed();
   });
 }

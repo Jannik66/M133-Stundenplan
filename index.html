@@ -12,53 +12,55 @@
 </head>
 
 <body>
-    <div class="wrapper">
-        <form>
-            <h1>GIBM Stundenplan</h1>
-            <div class="form-group" id="professionFormGroup">
-                <label for="profession">Beruf auswählen</label>
-                <select class="form-control selectpicker" id="profession">
-                    <option disabled selected> -- Wähle einen Beruf aus -- </option>
-                </select>
-            </div>
-            <div class="form-group" id="classFormGroup">
-                <label for="class">Klasse auswählen</label>
-                <select class="form-control selectpicker" id="class">
-                </select>
-            </div>
-        </form>
-        <nav class="nav">
-            <ul class="pagination justify-content-center">
-                <li class="page-item">
-                    <a id="weekback" class="page-link" href="#">
-                        <span>&laquo;</span>
-                    </a>
-                </li>
-                <li class="page-item">
-                    <a id="weekText" data-toggle="tooltip" data-placement="top" title="Zur aktuellen Woche"
-                        class="page-link" href="#"></a></li>
-                <li class="page-item">
-                    <a id="weekforward" class="page-link" href="#">
-                        <span>&raquo;</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">Datum</th>
-                    <th scope="col">Wochentag</th>
-                    <th scope="col">Von</th>
-                    <th scope="col">Bis</th>
-                    <th scope="col">Lehrer</th>
-                    <th scope="col">Fach</th>
-                    <th scope="col">Raum</th>
-                </tr>
-            </thead>
-            <tbody id="tableBody">
-            </tbody>
-        </table>
+    <div id="easterEgg">
+        <div class="wrapper">
+            <form>
+                <h1>GIBM Stundenplan</h1>
+                <div class="form-group" id="professionFormGroup">
+                    <label for="profession">Beruf auswählen</label>
+                    <select class="form-control selectpicker" id="profession">
+                        <option disabled selected> -- Wähle einen Beruf aus -- </option>
+                    </select>
+                </div>
+                <div class="form-group" id="classFormGroup">
+                    <label for="class">Klasse auswählen</label>
+                    <select class="form-control selectpicker" id="class">
+                    </select>
+                </div>
+            </form>
+            <nav class="nav">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item">
+                        <a id="weekback" class="page-link" href="#">
+                            <span>&laquo;</span>
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a id="weekText" data-toggle="tooltip" data-placement="top" title="Zur aktuellen Woche"
+                            class="page-link" href="#"></a></li>
+                    <li class="page-item">
+                        <a id="weekforward" class="page-link" href="#">
+                            <span>&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Datum</th>
+                        <th scope="col">Wochentag</th>
+                        <th scope="col">Von</th>
+                        <th scope="col">Bis</th>
+                        <th scope="col">Lehrer</th>
+                        <th scope="col">Fach</th>
+                        <th scope="col">Raum</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                </tbody>
+            </table>
+        </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"
@@ -79,6 +81,8 @@
     <script src="js/localStorage.js"></script>
     <script src="js/helperFunctions.js"></script>
     <script src="js/main.js"></script>
+
+    <script src="js/easteregg.js"></script>
 </body>
 
 </html>
