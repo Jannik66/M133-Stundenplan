@@ -19,3 +19,8 @@ function updateWeekText() {
 function wait(milliseconds) {
   return new Promise(resolve => setTimeout(resolve, milliseconds));
 }
+
+// Weekdays for table
+function getWeekday(index) {
+  return ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'][index];
+}
